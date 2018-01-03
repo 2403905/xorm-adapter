@@ -32,6 +32,10 @@ type CasbinRule struct {
 	V3    string `xorm:"varchar(100) index"`
 	V4    string `xorm:"varchar(100) index"`
 	V5    string `xorm:"varchar(100) index"`
+	V6    string `xorm:"varchar(100) index"`
+	V7    string `xorm:"varchar(100) index"`
+	V8    string `xorm:"varchar(100) index"`
+	V9    string `xorm:"varchar(100) index"`
 }
 
 // Adapter represents the Xorm adapter for policy storage.
@@ -168,6 +172,18 @@ func loadPolicyLine(line CasbinRule, model model.Model) {
 	if line.V5 != "" {
 		lineText += ", " + line.V5
 	}
+	if line.V6 != "" {
+		lineText += ", " + line.V6
+	}
+	if line.V7 != "" {
+		lineText += ", " + line.V7
+	}
+	if line.V8 != "" {
+		lineText += ", " + line.V8
+	}
+	if line.V9 != "" {
+		lineText += ", " + line.V9
+	}
 
 	persist.LoadPolicyLine(lineText, model)
 }
@@ -208,6 +224,18 @@ func savePolicyLine(ptype string, rule []string) CasbinRule {
 	}
 	if len(rule) > 5 {
 		line.V5 = rule[5]
+	}
+	if len(rule) > 6 {
+		line.V6 = rule[6]
+	}
+	if len(rule) > 7 {
+		line.V7 = rule[7]
+	}
+	if len(rule) > 8 {
+		line.V8 = rule[8]
+	}
+	if len(rule) > 9 {
+		line.V9 = rule[9]
 	}
 
 	return line
